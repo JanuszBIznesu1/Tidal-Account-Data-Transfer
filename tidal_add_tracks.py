@@ -1,4 +1,4 @@
-import tidalapi
+import tidalapi, os
 from tqdm import tqdm
 
 session = tidalapi.Session()
@@ -16,4 +16,9 @@ TidalUser2 = tidalapi.Favorites(session2, uid2)
 
 print('Copying ...')
 for i in tqdm(range(len(tracks))):
-    TidalUser2.add_track(tracks[i].id)
+    try:
+        TidalUser2.add_track(tracks[i].id)
+    except:
+        print('Skipped', tracks[i].full_name, 'by' , tracks[i].artist.name)
+
+os.system("pause")
