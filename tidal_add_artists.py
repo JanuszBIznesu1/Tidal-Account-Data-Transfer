@@ -16,4 +16,8 @@ TidalUser2 = tidalapi.Favorites(session2, uid2)
 
 print('Copying')
 for i in tqdm(range(len(artists))):
-    TidalUser2.add_artist(artists[i].id)
+    try:
+        TidalUser2.add_artist(artists[i].id)
+    except:
+        print('Skipped', artists[i])
+
